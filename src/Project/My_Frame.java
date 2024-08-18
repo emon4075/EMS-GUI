@@ -12,13 +12,19 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JTextField;
+import javax.swing.JOptionPane;
+
+import java.io.FileWriter;
 
 public class My_Frame extends JFrame implements ActionListener {
     ImageIcon frameIcon = new ImageIcon("E://Swing Project//assets//goat.png");
     JPanel mainPanel, addUserPanel;
     JButton addButton, deleteButton, showButton, exitButton, submitButton;
+
     @SuppressWarnings("rawtypes")
     JComboBox designationComboBox;
+    JTextField nameField, idField;
 
     My_Frame() {
         mainPanelFun();
@@ -101,6 +107,18 @@ public class My_Frame extends JFrame implements ActionListener {
         userFormLabel.setBounds(0, 0, 600, 600);
         /* Baki Gulao Add Korte Hobe */
 
+        /* User Name Text Field */
+        nameField = new JTextField();
+        nameField.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        nameField.setBounds(200, 150, 200, 30);
+        nameField.addActionListener(this);
+
+        /* User ID Text Field */
+        idField = new JTextField();
+        idField.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        idField.setBounds(200, 200, 200, 30);
+        idField.addActionListener(this);
+
         /* Designation */
         String[] designations = { "Intern", "Lead Developer", "DevOps", "QA Engineer", "Team Lead" };
         designationComboBox = new JComboBox(designations);
@@ -117,6 +135,8 @@ public class My_Frame extends JFrame implements ActionListener {
         submitButton.addActionListener(this);
 
         addUserPanel.add(userFormLabel);
+        addUserPanel.add(nameField);
+        addUserPanel.add(idField);
         addUserPanel.add(designationComboBox);
         addUserPanel.add(submitButton);
     }
@@ -131,7 +151,33 @@ public class My_Frame extends JFrame implements ActionListener {
             this.repaint();
         }
         if (e.getSource() == submitButton) {
-            System.out.println("HAHA");
+            String myName = nameField.getText();
+            String myId = idField.getText();
+            String myPosition = (String) designationComboBox.getSelectedItem();
+
+            String fileName = "employee" + myId + ".txt";
+            String filePath = "E://Swing Project//Database//" + fileName;
+
+            try {
+                if (myName.equals("") || myId.equals("")) {
+                    JOptionPane.showMessageDialog(null, "No Option Can Be Left Blank", "Error Occured",
+                            JOptionPane.ERROR_MESSAGE);
+                } else {
+                    FileWriter File = new FileWriter(filePath);
+                    try {
+                        File.write("User Name : " + myName + "\n");
+                        File.write("User ID : " + myId + "\n");
+                        File.write("Position : " + myPosition + "\n");
+                    } finally {
+                        File.close();
+                        JOptionPane.showMessageDialog(null, "Employee Added Successfully", "Add Employee Form",
+                                JOptionPane.PLAIN_MESSAGE);
+                    }
+                }
+            } catch (Exception i) {
+                System.out.println(i.getMessage());
+                System.exit(0);
+            }
         } else if (e.getSource() == exitButton) {
             System.exit(0);
         }

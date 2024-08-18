@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.ImageIcon;
 
 public class My_Labels {
@@ -51,24 +50,12 @@ public class My_Labels {
         nameLabel.setBounds(100, 150, 100, 30);
         userFormLabel.add(nameLabel);
 
-        /* User Name Text Field */
-        JTextField nameField = new JTextField();
-        nameField.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
-        nameField.setBounds(200, 150, 200, 30);
-        userFormLabel.add(nameField);
-
         /* User ID Label */
         JLabel idLabel = new JLabel("User ID:");
         idLabel.setForeground(Color.WHITE);
         idLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
         idLabel.setBounds(100, 200, 100, 30);
         userFormLabel.add(idLabel);
-
-        /* User ID Text Field */
-        JTextField idField = new JTextField();
-        idField.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
-        idField.setBounds(200, 200, 200, 30);
-        userFormLabel.add(idField);
 
         /* User Designation */
         JLabel designationLabel = new JLabel("Postion:");
