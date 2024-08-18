@@ -66,4 +66,14 @@ public class My_Labels {
 
         return userFormLabel;
     }
+
+    public JLabel showUserLabelFun() {
+        JLabel showUserLabel = new JLabel();
+        showUserLabel.setText("Show User");
+        showUserLabel.setVerticalTextPosition(JLabel.TOP);
+        showUserLabel.setHorizontalTextPosition(JLabel.CENTER);
+        showUserLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 40));
+        showUserLabel.setForeground(Color.WHITE);
+        return showUserLabel;
+    }
 }
