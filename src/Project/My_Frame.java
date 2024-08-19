@@ -330,7 +330,7 @@ public class My_Frame extends JFrame implements ActionListener {
             String myPosition = (String) designationComboBox.getSelectedItem();
 
             String fileName = "employee" + myId + ".txt";
-            String filePath = "E://Swing Project//Database//" + fileName;
+            String filePath = "Database//" + fileName;
 
             try {
                 if (myName.equals("") || myId.equals("")) {
@@ -365,7 +365,7 @@ public class My_Frame extends JFrame implements ActionListener {
         }
         if (e.getSource() == showUserButton) {
             try {
-                String filePath = "E://Swing Project//Database//" + "employee" + showIdField.getText() + ".txt";
+                String filePath = "Database//" + "employee" + showIdField.getText() + ".txt";
                 File F = new File(filePath);
                 if (F.exists()) {
                     JTextArea T = new JTextArea();
@@ -412,7 +412,7 @@ public class My_Frame extends JFrame implements ActionListener {
             String UserPassword = new String(Password);
             String Admin = "1234";
             if (UserPassword.equals(Admin)) {
-                String filePath = "E://Swing Project//Database//" + "employee" + Id + ".txt";
+                String filePath = "Database//" + "employee" + Id + ".txt";
                 File F = new File(filePath);
                 if (F.exists()) {
                     F.delete();

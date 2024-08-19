@@ -10,7 +10,7 @@ public class My_Labels {
     public JLabel logoLabelFun() {
         /* Logo label implementation */
 
-        ImageIcon logoIcon = new ImageIcon("E://Swing Project//assets//Main_Logo_Resized.png");
+        ImageIcon logoIcon = new ImageIcon("assets//Main_Logo_Resized.png");
         JLabel logoLabel = new JLabel();
         logoLabel.setText("Employee Manager");
         logoLabel.setIcon(logoIcon);
@@ -79,7 +79,7 @@ public class My_Labels {
 
     public JLabel deleteUserLabelFun() {
         JLabel deleteUserLabel = new JLabel();
-        ImageIcon image = new ImageIcon("E://Swing Project//assets//fired_resized.png");
+        ImageIcon image = new ImageIcon("assets//fired_resized.png");
         deleteUserLabel.setIcon(image);
         deleteUserLabel.setText("Delete User");
         deleteUserLabel.setVerticalAlignment(JLabel.TOP);
