@@ -16,6 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -24,14 +25,15 @@ import java.util.Scanner;
 
 public class My_Frame extends JFrame implements ActionListener {
     ImageIcon frameIcon = new ImageIcon("E://Swing Project//assets//goat.png");
-    JPanel mainPanel, addUserPanel, showUserPanel;
+    JPanel mainPanel, addUserPanel, showUserPanel, deleteUserPanel;
     JButton addButton, deleteButton, showButton, exitButton, submitFormButton, exitFormButton, showUserButton,
-            exitShowUserButton;
+            exitShowUserButton, deleteIdButton, exitIdButton;
 
     @SuppressWarnings("rawtypes")
     JComboBox designationComboBox;
-    JTextField nameField, idField, showIdField;
+    JTextField nameField, idField, showIdField, deleteIdField;
     JTextArea T;
+    JPasswordField passwordField;
 
     My_Frame() {
         mainPanelFun();
@@ -66,28 +68,28 @@ public class My_Frame extends JFrame implements ActionListener {
         addButton = new JButton("Add User");
         addButton.setFocusable(false);
         addButton.setBackground(new Color(200, 240, 35));
-        addButton.setFont(new Font("Courier New", Font.PLAIN, 15));
+        addButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
         addButton.addActionListener(this);
         addButton.setMnemonic(KeyEvent.VK_A);
 
         showButton = new JButton("Show User");
         showButton.setFocusable(false);
         showButton.setBackground(new Color(200, 240, 35));
-        showButton.setFont(new Font("Courier New", Font.PLAIN, 15));
+        showButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
         showButton.addActionListener(this);
         showButton.setMnemonic(KeyEvent.VK_S);
 
         deleteButton = new JButton("Delete User");
         deleteButton.setFocusable(false);
         deleteButton.setBackground(new Color(200, 240, 35));
-        deleteButton.setFont(new Font("Courier New", Font.PLAIN, 15));
+        deleteButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
         deleteButton.addActionListener(this);
         deleteButton.setMnemonic(KeyEvent.VK_D);
 
         exitButton = new JButton("Exit EMS");
         exitButton.setFocusable(false);
         exitButton.setBackground(new Color(200, 240, 35));
-        exitButton.setFont(new Font("Courier New", Font.PLAIN, 15));
+        exitButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 15));
         exitButton.addActionListener(this);
         exitButton.setMnemonic(KeyEvent.VK_X);
 
@@ -112,7 +114,6 @@ public class My_Frame extends JFrame implements ActionListener {
         /* addUserPanel + userFormPanel */
         JLabel userFormLabel = myLabels.userFormLabelFun();
         userFormLabel.setBounds(0, 0, 600, 600);
-        /* Baki Gulao Add Korte Hobe */
 
         /* User Name Text Field */
         nameField = new JTextField();
@@ -141,12 +142,28 @@ public class My_Frame extends JFrame implements ActionListener {
         submitFormButton.setBounds(250, 350, 100, 30);
         submitFormButton.addActionListener(this);
 
+        /* Back to Main Menu Button */
+        JButton backButton = new JButton("Menu");
+        backButton.setFocusable(false);
+        backButton.setBackground(new Color(200, 240, 35));
+        backButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        backButton.setBounds(250, 390, 100, 30);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(addUserPanel);
+                add(mainPanel);
+                revalidate();
+                repaint();
+            }
+        });
+
         /* Exit Button */
         exitFormButton = new JButton("Exit");
         exitFormButton.setFocusable(false);
         exitFormButton.setBackground(new Color(200, 240, 35));
         exitFormButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
-        exitFormButton.setBounds(250, 390, 100, 30);
+        exitFormButton.setBounds(250, 430, 100, 30);
         exitFormButton.addActionListener(this);
 
         addUserPanel.add(userFormLabel);
@@ -155,6 +172,7 @@ public class My_Frame extends JFrame implements ActionListener {
         addUserPanel.add(designationComboBox);
         addUserPanel.add(submitFormButton);
         addUserPanel.add(exitFormButton);
+        addUserPanel.add(backButton);
     }
 
     public void showUserPanelFun() {
@@ -202,6 +220,99 @@ public class My_Frame extends JFrame implements ActionListener {
         exitShowUserButton.addActionListener(this);
         showUserPanel.add(exitShowUserButton);
 
+        /* Back to Main Menu Button */
+        JButton backButton = new JButton("Menu");
+        backButton.setFocusable(false);
+        backButton.setBackground(new Color(200, 240, 35));
+        backButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        backButton.setBounds(250, 470, 100, 30);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(showUserPanel);
+                add(mainPanel);
+                revalidate();
+                repaint();
+            }
+        });
+
+        showUserPanel.add(backButton);
+    }
+
+    public void deleteUserPanelFun() {
+        deleteUserPanel = new JPanel();
+        deleteUserPanel.setBackground(new Color(103, 65, 136));
+        deleteUserPanel.setBounds(0, 0, 600, 600);
+        deleteUserPanel.setLayout(null);
+
+        My_Labels myLabels = new My_Labels();
+        JLabel deleteUserLabel = myLabels.deleteUserLabelFun();
+        deleteUserLabel.setBounds(150, 10, 300, 300);
+        deleteUserPanel.add(deleteUserLabel);
+
+        /* IdField Label */
+        JLabel idLabel = new JLabel("User ID:");
+        idLabel.setForeground(Color.WHITE);
+        idLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        idLabel.setBounds(100, 280, 100, 30);
+        deleteUserPanel.add(idLabel);
+
+        /* ID Field */
+        deleteIdField = new JTextField();
+        deleteIdField.setBounds(200, 280, 200, 30);
+        deleteIdField.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        deleteIdField.addActionListener(this);
+        deleteUserPanel.add(deleteIdField);
+
+        /* Password Label */
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordLabel.setForeground(Color.WHITE);
+        passwordLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        passwordLabel.setBounds(100, 330, 100, 30); // Positioning below the ID field
+        deleteUserPanel.add(passwordLabel);
+
+        /* Password Field */
+        passwordField = new JPasswordField();
+        passwordField.setBounds(200, 330, 200, 30);
+        passwordField.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        passwordField.addActionListener(this);
+        deleteUserPanel.add(passwordField);
+
+        /* Delete Button */
+        deleteIdButton = new JButton("Delete");
+        deleteIdButton.setFocusable(false);
+        deleteIdButton.setBackground(new Color(200, 240, 35));
+        deleteIdButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        deleteIdButton.setBounds(250, 400, 100, 30);
+        deleteIdButton.addActionListener(this);
+        deleteUserPanel.add(deleteIdButton);
+
+        /* Back to Main Menu Button */
+        JButton backButton = new JButton("Menu");
+        backButton.setFocusable(false);
+        backButton.setBackground(new Color(200, 240, 35));
+        backButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        backButton.setBounds(250, 440, 100, 30);
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                remove(deleteUserPanel);
+                add(mainPanel);
+                revalidate();
+                repaint();
+            }
+        });
+
+        /* Exit Button */
+        exitIdButton = new JButton("Exit");
+        exitIdButton.setFocusable(false);
+        exitIdButton.setBackground(new Color(200, 240, 35));
+        exitIdButton.setFont(new Font("Trebuchet MS", Font.PLAIN, 20));
+        exitIdButton.setBounds(250, 480, 100, 30);
+        exitIdButton.addActionListener(this);
+        deleteUserPanel.add(exitIdButton);
+
+        deleteUserPanel.add(backButton);
     }
 
     @Override
@@ -258,9 +369,9 @@ public class My_Frame extends JFrame implements ActionListener {
                 File F = new File(filePath);
                 if (F.exists()) {
                     JTextArea T = new JTextArea();
-                    T.setBounds(100, 280, 400, 200);
+                    T.setBounds(100, 260, 400, 200);
                     T.setBackground(new Color(103, 65, 136));
-                    T.setFont(new Font("Monospaced", Font.BOLD, 20));
+                    T.setFont(new Font("Trebuchet MS", Font.BOLD, 20));
                     T.setBorder(BorderFactory.createLineBorder(new Color(200, 240, 35), 5));
                     T.setEditable(false);
                     T.setForeground(Color.WHITE);
@@ -269,15 +380,16 @@ public class My_Frame extends JFrame implements ActionListener {
                     showUserPanel.add(T);
                     showUserPanel.revalidate();
                     showUserPanel.repaint();
-                    T.append("From : " + F.getName() + "\n");
+                    T.append("\n");
+                    T.append(" From : " + F.getName() + "\n");
                     try (Scanner fileReader = new Scanner(F)) {
                         while (fileReader.hasNextLine()) {
-                            T.append(fileReader.nextLine());
+                            T.append(" " + fileReader.nextLine());
                             T.append("\n");
                         }
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "File Not Found", "Wrong ID", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "User Not Found", "Wrong ID", JOptionPane.ERROR_MESSAGE);
                 }
             } catch (FileNotFoundException j) {
                 JOptionPane.showMessageDialog(null, "Error: " + j.getMessage(), "File Error",
@@ -285,6 +397,34 @@ public class My_Frame extends JFrame implements ActionListener {
             }
         }
         if (e.getSource() == exitShowUserButton) {
+            System.exit(0);
+        }
+        if (e.getSource() == deleteButton) {
+            this.remove(mainPanel);
+            deleteUserPanelFun();
+            this.add(deleteUserPanel);
+            this.revalidate();
+            this.repaint();
+        }
+        if (e.getSource() == deleteIdButton) {
+            String Id = deleteIdField.getText();
+            char[] Password = passwordField.getPassword();
+            String UserPassword = new String(Password);
+            String Admin = "1234";
+            if (UserPassword.equals(Admin)) {
+                String filePath = "E://Swing Project//Database//" + "employee" + Id + ".txt";
+                File F = new File(filePath);
+                if (F.exists()) {
+                    F.delete();
+                    JOptionPane.showMessageDialog(null, "User Deleted", "Deleted", JOptionPane.PLAIN_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, "User Not Found", "Wrong Id", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Wrong Passcode", "Passcode Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        if (e.getSource() == exitIdButton) {
             System.exit(0);
         }
         if (e.getSource() == exitButton) {

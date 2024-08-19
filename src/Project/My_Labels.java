@@ -76,4 +76,19 @@ public class My_Labels {
         showUserLabel.setForeground(Color.WHITE);
         return showUserLabel;
     }
+
+    public JLabel deleteUserLabelFun() {
+        JLabel deleteUserLabel = new JLabel();
+        ImageIcon image = new ImageIcon("E://Swing Project//assets//fired_resized.png");
+        deleteUserLabel.setIcon(image);
+        deleteUserLabel.setText("Delete User");
+        deleteUserLabel.setVerticalAlignment(JLabel.TOP);
+        deleteUserLabel.setHorizontalAlignment(JLabel.CENTER);
+        deleteUserLabel.setVerticalTextPosition(JLabel.BOTTOM);
+        deleteUserLabel.setHorizontalTextPosition(JLabel.CENTER);
+        deleteUserLabel.setFont(new Font("Trebuchet MS", Font.PLAIN, 30));
+        deleteUserLabel.setForeground(Color.WHITE);
+        deleteUserLabel.setIconTextGap(-10);
+        return deleteUserLabel;
+    }
 }
