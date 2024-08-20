@@ -18,4 +18,6 @@
 [EMS-GUI Repository](https://github.com/emon4075/EMS-GUI)
 
 ## Demo
-
+<video src = "assets\InShot_20240819_225408478.mp4">
+Update Browser
+</video>
