@@ -16,6 +16,3 @@
 ## GitHub Repo:
 
 [EMS-GUI Repository](https://github.com/emon4075/EMS-GUI)
-
-## Demo
-https://github.com/emon4075/EMS-GUI/blob/master/assets/InShot_20240819_225408478.mp4
